@@ -1,0 +1,37 @@
+---
+import { urlFor, type EventDoc } from '../lib/sanity';
+
+interface Props {
+  event: EventDoc;
+  past?: boolean;
+  class?: string;
+}
+const { event, past = false, class: cls = '' } = Astro.props;
+const start = new Date(event.start);
+const month = start.toLocaleDateString('en-US', { month: 'short' });
+const day = start.toLocaleDateString('en-US', { day: 'numeric' });
+const time = start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+const weekday = start.toLocaleDateString('en-US', { weekday: 'long' });
+const cover = event.cover
+  ? urlFor(event.cover).width(320).height(320).fit('crop').auto('format').url()
+  : null;
+---
+<article class={`event-card reveal ${cls}${past ? ' is-past' : ''}`}>
+  <div class="event-date" aria-hidden="true">
+    <span class="m">{month}</span>
+    <span class="d">{day}</span>
+  </div>
+  {cover && <img class="event-thumb" src={cover} alt="" loading="lazy" />}
+  <div class="event-body">
+    <h3>{event.title}</h3>
+    <div class="event-meta">
+      <span>{weekday}, {time}</span>
+      {event.location && <span class="dot">•</span>}
+      {event.location && <span>{event.location}</span>}
+    </div>
+    {event.description && <p>{event.description}</p>}
+  </div>
+  {!past && event.rsvpUrl && (
+    <a class="btn btn-dark event-rsvp" href={event.rsvpUrl} target="_blank" rel="noopener">RSVP</a>
+  )}
+</article>

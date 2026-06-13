@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import EventCard from '../components/EventCard.astro';
+import { getEvents } from '../lib/sanity';
+import { GCAL_ID, GCAL_TZ } from '../config';
+
+const { upcoming, past } = await getEvents();
+
+const gcalSrc = GCAL_ID
+  ? `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(GCAL_ID)}&ctz=${encodeURIComponent(GCAL_TZ)}&mode=MONTH&showTitle=0&showPrint=0&showCalendars=0&showTz=0`
+  : '';
+---
+<Base title="Events — Rotaract Club of Chicago" description="Upcoming service projects, socials, and roundtables with the Rotaract Club of Chicago.">
+  <section class="pagehead">
+    <div class="aurora a1"></div><div class="aurora a2"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Events</span>
+      <h1>Where you'll <em>find us</em></h1>
+      <p>Service projects, socials, and roundtables — come to one and say hi. New events are posted regularly.</p>
+    </div>
+  </section>
+
+  <!-- Upcoming -->
+  <section class="events" style="padding-top:80px" id="upcoming">
+    <div class="wrap">
+      <h2 style="font-size:clamp(26px,3.4vw,40px);margin-bottom:8px">Upcoming</h2>
+      {upcoming.length > 0 ? (
+        <div class="event-list" style="margin-top:34px">
+          {upcoming.map((e, i) => <EventCard event={e} class={`d${(i % 3) + 1}`} />)}
+        </div>
+      ) : (
+        <p style="color:#41506C;font-size:18px;margin-top:14px">No upcoming events posted right now — check the calendar below or follow us on Instagram.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- Google Calendar embed -->
+  {gcalSrc && (
+    <section style="padding-top:0">
+      <div class="wrap">
+        <h2 style="font-size:clamp(26px,3.4vw,40px);margin-bottom:24px">Full calendar</h2>
+        <div class="gcal"><iframe src={gcalSrc} title="Club calendar" loading="lazy"></iframe></div>
+      </div>
+    </section>
+  )}
+
+  <!-- Past -->
+  {past.length > 0 && (
+    <section style="padding-top:0" id="past">
+      <div class="wrap">
+        <h2 style="font-size:clamp(26px,3.4vw,40px);margin-bottom:24px">Past events</h2>
+        <div class="event-list">
+          {past.map((e) => <EventCard event={e} past />)}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

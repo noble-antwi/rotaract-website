@@ -36,6 +36,17 @@ export interface Leader {
   linkedin?: string;
 }
 
+export interface EventDoc {
+  _id: string;
+  title: string;
+  start: string;
+  end?: string;
+  location?: string;
+  description?: string;
+  cover?: SanityImageSource;
+  rsvpUrl?: string;
+}
+
 /** Resolve the best thumbnail for an update card. */
 export function updateThumb(u: Update): string {
   if (u.youtube) return `https://i.ytimg.com/vi/${u.youtube}/hqdefault.jpg`;
@@ -74,4 +85,17 @@ export async function getLeaders(): Promise<Leader[]> {
       _id, name, role, photo, linkedin
     }`,
   );
+}
+
+export async function getEvents(): Promise<{ upcoming: EventDoc[]; past: EventDoc[] }> {
+  const all: EventDoc[] = await sanity.fetch(
+    `*[_type == "event" && !(_id in path("drafts.**"))] | order(start asc){
+      _id, title, start, end, location, description, cover, rsvpUrl
+    }`,
+  );
+  const now = Date.now();
+  const isUpcoming = (e: EventDoc) => new Date(e.end || e.start).getTime() >= now;
+  const upcoming = all.filter(isUpcoming);
+  const past = all.filter((e) => !isUpcoming(e)).reverse(); // most recent past first
+  return { upcoming, past };
 }

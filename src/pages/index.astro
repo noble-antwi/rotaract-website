@@ -3,10 +3,13 @@ import Base from '../layouts/Base.astro';
 import UpdateCard from '../components/UpdateCard.astro';
 import Leaders from '../components/Leaders.astro';
 import { img } from '../config';
-import { getUpdates, getLeaders, updateThumb } from '../lib/sanity';
+import EventCard from '../components/EventCard.astro';
+import { getUpdates, getLeaders, getEvents, updateThumb } from '../lib/sanity';
 
 const updates = await getUpdates(3);
 const leaders = await getLeaders();
+const { upcoming } = await getEvents();
+const nextEvents = upcoming.slice(0, 3);
 ---
 <Base>
   <!-- ===== HERO ===== -->
@@ -178,14 +181,20 @@ const leaders = await getLeaders();
           <span class="eyebrow reveal">Events</span>
           <h2 class="reveal d1">Where you'll <span class="h2-serif">find us</span></h2>
         </div>
-        <a class="btn btn-dark magnetic reveal d2" href="#">View calendar</a>
+        <a class="btn btn-dark magnetic reveal d2" href="/events">{nextEvents.length > 0 ? 'View all events' : 'View calendar'}</a>
       </div>
-      <div class="bento">
-        <div class="tile big reveal"><img src={img('event-1.svg')} alt="Event" /><div class="cap"><b>Service Saturdays</b><span>Hands-on community projects across Chicago</span></div></div>
-        <div class="tile wide reveal d1"><img src={img('event-2.svg')} alt="Event" /><div class="cap"><b>Monthly Socials</b><span>Casual gatherings around the city</span></div></div>
-        <div class="tile reveal d2"><img src={img('event-3.svg')} alt="Event" /><div class="cap"><b>Roundtables</b><span>Guest speakers</span></div></div>
-        <div class="tile reveal d3"><img src={img('connect.svg')} alt="Event" /><div class="cap"><b>Mixers</b><span>Meet the crew</span></div></div>
-      </div>
+      {nextEvents.length > 0 ? (
+        <div class="event-list" style="margin-top:50px">
+          {nextEvents.map((e, i) => <EventCard event={e} class={`d${i + 1}`} />)}
+        </div>
+      ) : (
+        <div class="bento">
+          <div class="tile big reveal"><img src={img('event-1.svg')} alt="Event" /><div class="cap"><b>Service Saturdays</b><span>Hands-on community projects across Chicago</span></div></div>
+          <div class="tile wide reveal d1"><img src={img('event-2.svg')} alt="Event" /><div class="cap"><b>Monthly Socials</b><span>Casual gatherings around the city</span></div></div>
+          <div class="tile reveal d2"><img src={img('event-3.svg')} alt="Event" /><div class="cap"><b>Roundtables</b><span>Guest speakers</span></div></div>
+          <div class="tile reveal d3"><img src={img('connect.svg')} alt="Event" /><div class="cap"><b>Mixers</b><span>Meet the crew</span></div></div>
+        </div>
+      )}
     </div>
   </section>
 
