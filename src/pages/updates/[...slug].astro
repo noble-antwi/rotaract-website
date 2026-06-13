@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { img } from '../../config';
+
+export async function getStaticPaths() {
+  const updates = await getCollection('updates', ({ data }) => !data.draft);
+  return updates.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const fmt = d.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<Base title={`${d.title} — Rotaract Club of Chicago`} description={d.excerpt}>
+  <article class="post" style="padding-top:140px">
+    <div class="wrap">
+      <a class="back" href="/updates"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All updates</a>
+      <p class="meta">{fmt}</p>
+      <h1 style="font-weight:400;font-size:clamp(32px,5vw,56px);line-height:1.05;letter-spacing:-.025em">{d.title}</h1>
+
+      {d.youtube ? (
+        <div class="video">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${d.youtube}`}
+            title={d.title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      ) : d.cover ? (
+        <div class="cover"><img src={img(d.cover)} alt={d.title} /></div>
+      ) : null}
+
+      <div class="content">
+        <Content />
+      </div>
+
+      {d.gallery && d.gallery.length > 0 && (
+        <div class="gallery">
+          {d.gallery.map((g) => <img src={img(g)} alt="" loading="lazy" />)}
+        </div>
+      )}
+    </div>
+  </article>
+</Base>

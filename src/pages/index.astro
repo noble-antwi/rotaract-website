@@ -1,0 +1,232 @@
+---
+import Base from '../layouts/Base.astro';
+import UpdateCard from '../components/UpdateCard.astro';
+import { getCollection } from 'astro:content';
+import { img } from '../config';
+
+const updates = (await getCollection('updates', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+<Base>
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="top">
+    <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+
+    <div class="wrap hero-inner">
+      <span class="kicker reveal"><span class="dot"></span>Service Above Self · Chicago · Since 1992</span>
+      <h1 class="lines">
+        <span class="line"><span>Where doing</span></span>
+        <span class="line"><span>good meets</span></span>
+        <span class="line"><span class="serif">good company.</span></span>
+      </h1>
+      <p class="hero-sub serif reveal d2">A service and social club for students and young professionals — born from Rotary/One, the original Rotary club, founded in Chicago in 1905. We connect people, transform communities, and solve problems.</p>
+      <div class="hero-cta reveal d3">
+        <a class="btn btn-fill magnetic" href="#join">Join the club <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-out magnetic" href="#what">See what we do</a>
+      </div>
+    </div>
+
+    <div class="scrollcue" aria-hidden="true">Scroll</div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Service Above Self <span class="s">✶</span></span><span>Community <span class="s">✶</span></span><span>International <span class="s">✶</span></span><span>Friendship <span class="s">✶</span></span><span>Chicago <span class="s">✶</span></span><span>Leadership <span class="s">✶</span></span>
+        <span>Service Above Self <span class="s">✶</span></span><span>Community <span class="s">✶</span></span><span>International <span class="s">✶</span></span><span>Friendship <span class="s">✶</span></span><span>Chicago <span class="s">✶</span></span><span>Leadership <span class="s">✶</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTRO ===== -->
+  <section class="intro">
+    <div class="wrap">
+      <p class="statement reveal">We're young Chicagoans who believe service should be
+        <span class="hl">meaningful</span>, community should be
+        <span class="hl2">real</span>, and doing good should be
+        <span class="hl3">a whole lot of fun</span>.</p>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat reveal"><b class="count" data-target="1905">0</b><span>Rotary founded in Chicago — the original club</span></div>
+      <div class="stat reveal d1"><b class="count" data-target="1992">0</b><span>Rotaract Club of Chicago chartered</span></div>
+      <div class="stat reveal d2"><b class="count" data-target="3">0</b><span>Pillars: international, community &amp; social</span></div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="what">
+    <div class="wrap">
+      <div class="svc-head">
+        <div>
+          <span class="eyebrow reveal">What we do</span>
+          <h2 class="reveal d1">Three ways we <span class="h2-serif">show up</span></h2>
+        </div>
+        <p class="reveal d2" style="max-width:34ch;color:#41506C;font-size:16px">Every member finds their lane — and builds friendships and leadership along the way.</p>
+      </div>
+
+      <div class="row">
+        <div class="row__media reveal"><span class="badge">Connect</span><img src={img('connect.svg')} alt="Members connecting" /></div>
+        <div>
+          <div class="row__num reveal d1">01</div>
+          <h3 class="reveal d1">We <em>connect</em> people</h3>
+          <p class="reveal d2">Monthly socials, roundtables with guest speakers, and a tight network of service-minded peers across the city. Come for the cause, stay for the people.</p>
+          <ul class="reveal d3"><li>Monthly socials</li><li>Guest-speaker roundtables</li><li>Young-professional network</li></ul>
+        </div>
+      </div>
+
+      <div class="row flip">
+        <div class="row__media reveal"><span class="badge">Transform</span><img src={img('transform.svg')} alt="Community service" /></div>
+        <div>
+          <div class="row__num reveal d1">02</div>
+          <h3 class="reveal d1">We <em>transform</em> communities</h3>
+          <p class="reveal d2">Hands-on work right here in Chicago — food and clothing drives, soup kitchens, Habitat for Humanity builds, beach cleanups, and dictionary drives.</p>
+          <ul class="reveal d3"><li>Food &amp; clothing drives</li><li>Habitat builds</li><li>Beach cleanups</li></ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="row__media reveal"><span class="badge">Solve</span><img src={img('solve.svg')} alt="International service" /></div>
+        <div>
+          <div class="row__num reveal d1">03</div>
+          <h3 class="reveal d1">We <em>solve</em> problems</h3>
+          <p class="reveal d2">Projects with global reach: education initiatives abroad, hospital equipment for Central America, and clean-water wells in Thailand.</p>
+          <ul class="reveal d3"><li>Education abroad</li><li>Medical equipment</li><li>Water wells</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo reveal">
+        <img src={img('about.svg')} alt="Rotaract Club of Chicago members" />
+        <div class="stamp"><b>33</b><span>Years of service</span></div>
+      </div>
+      <div>
+        <span class="eyebrow reveal">About the club</span>
+        <h2 class="reveal d1">Rooted in the <span class="h2-serif">birthplace</span> of Rotary</h2>
+        <p class="reveal d2" style="font-size:18px;color:#41506C;margin-top:20px;line-height:1.7;max-width:48ch">Founded in 1992 and sponsored by the Rotary Club of Chicago — the very first Rotary club in the world — we carry that legacy forward for the next generation of service leaders.</p>
+        <div class="timeline reveal d2">
+          <div class="tl"><b>1905 — Rotary is born</b><p>Paul Harris founds the first Rotary club in downtown Chicago.</p></div>
+          <div class="tl"><b>1992 — Our club is chartered</b><p>Rotary/One sponsors the Rotaract Club of Chicago.</p></div>
+          <div class="tl"><b>Today — Still serving</b><p>Socials, roundtables, and hands-on service across the city and the world.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOIN ===== -->
+  <section class="join" id="join">
+    <div class="wrap join-grid">
+      <div>
+        <span class="eyebrow reveal">How to join</span>
+        <h2 class="reveal d1">Membership starts with <span class="h2-serif">showing up</span></h2>
+        <p class="sub reveal d2">If you're a student or young professional who wants to serve, lead, and meet good people — you're exactly who we're looking for. No Rotary experience needed.</p>
+        <a class="btn btn-fill magnetic reveal d3" href="mailto:info@rotaractchicago.org" style="margin-top:30px">Reach out today <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="steps">
+        <div class="step reveal d1"><span class="n">01</span><div><b>Come to an event</b><span>Join a social or service event and see if we're a fit.</span></div></div>
+        <div class="step reveal d2"><span class="n">02</span><div><b>Reach out</b><span>Email info@rotaractchicago.org and introduce yourself.</span></div></div>
+        <div class="step reveal d3"><span class="n">03</span><div><b>Become a member</b><span>We'll walk you through it and get you plugged in.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST UPDATES ===== -->
+  <section class="updates" id="updates">
+    <div class="wrap">
+      <div class="svc-head">
+        <div>
+          <span class="eyebrow reveal">Latest updates</span>
+          <h2 class="reveal d1">Fresh from <span class="h2-serif">the club</span></h2>
+        </div>
+        <a class="btn btn-dark magnetic reveal d2" href="/updates">All updates</a>
+      </div>
+      <div class="upd-grid">
+        {updates.map((u, i) => (
+          <UpdateCard
+            slug={u.id}
+            title={u.data.title}
+            date={u.data.date}
+            excerpt={u.data.excerpt}
+            cover={u.data.cover}
+            youtube={u.data.youtube}
+            class={`d${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EVENTS BENTO ===== -->
+  <section class="events" id="events">
+    <div class="wrap">
+      <div class="svc-head">
+        <div>
+          <span class="eyebrow reveal">Events</span>
+          <h2 class="reveal d1">Where you'll <span class="h2-serif">find us</span></h2>
+        </div>
+        <a class="btn btn-dark magnetic reveal d2" href="#">View calendar</a>
+      </div>
+      <div class="bento">
+        <div class="tile big reveal"><img src={img('event-1.svg')} alt="Event" /><div class="cap"><b>Service Saturdays</b><span>Hands-on community projects across Chicago</span></div></div>
+        <div class="tile wide reveal d1"><img src={img('event-2.svg')} alt="Event" /><div class="cap"><b>Monthly Socials</b><span>Casual gatherings around the city</span></div></div>
+        <div class="tile reveal d2"><img src={img('event-3.svg')} alt="Event" /><div class="cap"><b>Roundtables</b><span>Guest speakers</span></div></div>
+        <div class="tile reveal d3"><img src={img('connect.svg')} alt="Event" /><div class="cap"><b>Mixers</b><span>Meet the crew</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY ===== -->
+  <section class="why" id="why">
+    <div class="wrap why-grid">
+      <div>
+        <span class="eyebrow reveal">Our why &amp; how</span>
+        <p class="big-lede reveal d1">We transform lives and communities by identifying underserved needs — and <em>taking action</em>.</p>
+      </div>
+      <div class="why-list">
+        <div class="why-item reveal d1"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F8B528" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div><b>Create awareness</b><p>Of the needs in our community — and the solutions within reach.</p></div></div>
+        <div class="why-item reveal d2"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F8B528" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b>Collaborate &amp; partner</b><p>With front-line providers and community leaders who know the work.</p></div></div>
+        <div class="why-item reveal d3"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F8B528" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><div><b>Provide leadership</b><p>Financial resources, and hands-on work where it counts most.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta">
+    <div class="wrap">
+      <h2 class="reveal">Ready to do some <em>good</em>?</h2>
+      <p class="reveal d1">Come to your first event, meet the crew, and see what service with great company feels like.</p>
+      <a class="btn btn-fill magnetic reveal d2" href="#join">Become a member <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="news" id="contact">
+    <div class="wrap">
+      <div class="news-card reveal">
+        <div>
+          <h3>Get <em>monthly</em> updates</h3>
+          <p>One email a month with upcoming events and ways to get involved. No spam, ever.</p>
+        </div>
+        <form class="nf" data-newsletter>
+          <input type="email" required placeholder="you@example.com" aria-label="Email address" />
+          <button class="btn btn-fill" type="submit">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const f = document.querySelector<HTMLFormElement>('[data-newsletter]');
+    f?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      f.innerHTML = '<p style="font-weight:700;color:#17458F">Thanks for signing up — see you at the next event!</p>';
+    });
+  </script>
+</Base>

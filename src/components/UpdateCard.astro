@@ -1,0 +1,30 @@
+---
+import { img } from '../config';
+
+interface Props {
+  slug: string;
+  title: string;
+  date: Date;
+  excerpt: string;
+  cover?: string;
+  youtube?: string;
+  class?: string;
+}
+const { slug, title, date, excerpt, cover, youtube, class: cls = '' } = Astro.props;
+const fmt = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const thumb = youtube ? `https://i.ytimg.com/vi/${youtube}/hqdefault.jpg` : cover ? img(cover) : img('event-1.svg');
+---
+<a class={`upd-card reveal ${cls}`} href={`/updates/${slug}`}>
+  <div class="thumb">
+    <img src={thumb} alt="" loading="lazy" />
+    {youtube && (
+      <div class="play"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span></div>
+    )}
+  </div>
+  <div class="body">
+    <time datetime={date.toISOString()}>{fmt}</time>
+    <h3>{title}</h3>
+    <p>{excerpt}</p>
+    <span class="more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </div>
+</a>

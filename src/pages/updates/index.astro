@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import UpdateCard from '../../components/UpdateCard.astro';
+import { getCollection } from 'astro:content';
+
+const updates = (await getCollection('updates', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<Base title="Updates — Rotaract Club of Chicago" description="Weekly recaps, photos, and videos from the Rotaract Club of Chicago.">
+  <section class="pagehead">
+    <div class="aurora a1"></div><div class="aurora a2"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Updates</span>
+      <h1>Fresh from <em>the club</em></h1>
+      <p>Weekly recaps from our meetings, service projects, and socials — photos, stories, and the occasional video.</p>
+    </div>
+  </section>
+
+  <section class="updates" style="padding-top:80px">
+    <div class="wrap">
+      <div class="upd-grid">
+        {updates.map((u, i) => (
+          <UpdateCard
+            slug={u.id}
+            title={u.data.title}
+            date={u.data.date}
+            excerpt={u.data.excerpt}
+            cover={u.data.cover}
+            youtube={u.data.youtube}
+            class={`d${(i % 3) + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

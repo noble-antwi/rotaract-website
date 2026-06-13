@@ -1,0 +1,29 @@
+---
+import { SITE } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="/" style="display:inline-flex">
+          <svg class="wheel" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#F8B528" stroke-width="2.5"/><circle cx="24" cy="24" r="7" fill="#E11873"/><circle cx="24" cy="24" r="3.2" fill="#fff"/></svg>
+          <span><b>Rotaract</b><small>CHICAGO</small></span>
+        </a>
+        <p class="foot-desc">A service and social club for students and young professionals, sponsored by the Rotary Club of Chicago.</p>
+        <p class="motto">Service Above Self</p>
+        <div class="socials">
+          <a href={SITE.instagram} target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+          <a href={SITE.facebook} target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="/#what">What we do</a></li><li><a href="/#about">About</a></li><li><a href="/updates">Updates</a></li><li><a href="/#events">Events</a></li><li><a href="/#why">Our why</a></li></ul></div>
+      <div><h4>Get involved</h4><ul><li><a href="/#join">Join us</a></li><li><a href="/#">Volunteer</a></li><li><a href="/#">Donate</a></li><li><a href="/#contact">Newsletter</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li><li><a href={SITE.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a href={SITE.facebook} target="_blank" rel="noopener">Facebook</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© {year} Rotaract Club of Chicago. All rights reserved.</span>
+      <span><a href="/#">Terms</a> · <a href="/#">Privacy</a></span>
+    </div>
+  </div>
+</footer>
