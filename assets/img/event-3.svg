@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Event placeholder">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7A81B"/><stop offset="1" stop-color="#B5790B"/></linearGradient></defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <g transform="translate(400 240)" fill="none" stroke="#fff" stroke-width="9" opacity=".6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-70 70 L-25 10 L10 50 L45 -10 L75 30" transform="scale(1.2)"/>
+    <circle cx="50" cy="-45" r="20" transform="scale(1.2)"/>
+  </g>
+  <g transform="translate(400 470)" text-anchor="middle" font-family="system-ui,Segoe UI,Arial" fill="#fff">
+    <text font-size="34" font-weight="800">event-3.jpg</text>
+    <text y="40" font-size="20" opacity=".8">800 × 600 — event photo</text>
+  </g>
+</svg>
