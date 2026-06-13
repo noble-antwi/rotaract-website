@@ -1,0 +1,56 @@
+---
+import { img } from '../config';
+import { urlFor, type Leader } from '../lib/sanity';
+
+interface Props {
+  leaders?: Leader[];
+}
+const { leaders = [] } = Astro.props;
+
+// Fallback placeholders until officers are added in the CMS.
+const placeholders = [
+  { name: 'First Last', role: 'President', linkedin: '' },
+  { name: 'First Last', role: 'Vice President', linkedin: '' },
+  { name: 'First Last', role: 'Secretary', linkedin: '' },
+  { name: 'First Last', role: 'Treasurer', linkedin: '' },
+];
+
+const people =
+  leaders.length > 0
+    ? leaders.map((p) => ({
+        name: p.name,
+        role: p.role,
+        linkedin: p.linkedin || '',
+        photo: p.photo
+          ? urlFor(p.photo).width(600).height(700).fit('crop').auto('format').url()
+          : img('leader.svg'),
+      }))
+    : placeholders.map((p) => ({ ...p, photo: img('leader.svg') }));
+---
+<section class="leaders" id="leaders">
+  <div class="wrap">
+    <div class="svc-head">
+      <div>
+        <span class="eyebrow reveal">Leadership</span>
+        <h2 class="reveal d1">Meet the <span class="h2-serif">team</span></h2>
+      </div>
+      <p class="reveal d2" style="max-width:34ch;color:#41506C;font-size:16px">The members who keep the club running and the projects moving.</p>
+    </div>
+    <div class="leader-grid">
+      {people.map((p, i) => (
+        <article class={`leader reveal d${(i % 4) + 1}`}>
+          <div class="leader-photo">
+            <img src={p.photo} alt={p.name} loading="lazy" />
+            {p.linkedin && (
+              <a class="leader-li" href={p.linkedin} target="_blank" rel="noopener" aria-label={`${p.name} on LinkedIn`}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.34 18.34V9.99H5.67v8.35zM7 8.84a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1m11.34 9.5v-4.58c0-2.45-1.31-3.59-3.06-3.59a2.64 2.64 0 0 0-2.39 1.31v-1.13h-2.67v8.35h2.67v-4.41c0-1.16.22-2.29 1.66-2.29s1.42 1.33 1.42 2.36v4.34z"/></svg>
+              </a>
+            )}
+          </div>
+          <h3>{p.name}</h3>
+          <span class="leader-role">{p.role}</span>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
