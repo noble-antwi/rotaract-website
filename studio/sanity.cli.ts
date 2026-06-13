@@ -8,4 +8,7 @@ export default defineCliConfig({
   // The deployed dashboard will live at https://rotaract-chicago.sanity.studio
   studioHost: 'rotaract-chicago',
   autoUpdates: true,
+  deployment: {
+    appId: 'h081wxvc8n3fgngh5oenwvjt',
+  },
 });
