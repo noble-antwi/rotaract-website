@@ -1,6 +1,14 @@
 ---
-import { img } from '../config';
+import { avatarPhoto } from '../config';
 import { urlFor, type Leader } from '../lib/sanity';
+
+// Headshot used for each standard role's placeholder (real-looking dummy).
+const ROLE_AVATAR: Record<string, number> = {
+  president: 12,
+  'vice president': 13,
+  secretary: 45,
+  treasurer: 32,
+};
 
 interface Props {
   leaders?: Leader[];
@@ -17,7 +25,7 @@ const real = leaders.map((p) => ({
   linkedin: p.linkedin || '',
   photo: p.photo
     ? urlFor(p.photo).width(600).height(700).fit('crop').auto('format').url()
-    : img('leader.svg'),
+    : avatarPhoto(8),
   placeholder: false,
 }));
 
@@ -27,7 +35,7 @@ const fillers = STANDARD_ROLES.filter((r) => !filledRoles.has(r.toLowerCase())).
   name: 'First Last',
   role,
   linkedin: '',
-  photo: img('leader.svg'),
+  photo: avatarPhoto(ROLE_AVATAR[role.toLowerCase()] ?? 8),
   placeholder: true,
 }));
 

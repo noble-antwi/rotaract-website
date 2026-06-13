@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import UpdateCard from '../components/UpdateCard.astro';
 import Leaders from '../components/Leaders.astro';
-import { img } from '../config';
 import EventCard from '../components/EventCard.astro';
 import { getUpdates, getLeaders, getEvents, updateThumb } from '../lib/sanity';
+import { stockPhoto } from '../config';
 
 const updates = await getUpdates(3);
 const leaders = await getLeaders();
@@ -72,7 +72,7 @@ const nextEvents = upcoming.slice(0, 3);
       </div>
 
       <div class="row">
-        <div class="row__media reveal"><span class="badge">Connect</span><img src={img('connect.svg')} alt="Members connecting" /></div>
+        <div class="row__media reveal"><span class="badge">Connect</span><img src={stockPhoto('rcc-connect', 900, 720)} alt="Members connecting" /></div>
         <div>
           <div class="row__num reveal d1">01</div>
           <h3 class="reveal d1">We <em>connect</em> people</h3>
@@ -82,7 +82,7 @@ const nextEvents = upcoming.slice(0, 3);
       </div>
 
       <div class="row flip">
-        <div class="row__media reveal"><span class="badge">Transform</span><img src={img('transform.svg')} alt="Community service" /></div>
+        <div class="row__media reveal"><span class="badge">Transform</span><img src={stockPhoto('rcc-transform', 900, 720)} alt="Community service" /></div>
         <div>
           <div class="row__num reveal d1">02</div>
           <h3 class="reveal d1">We <em>transform</em> communities</h3>
@@ -92,7 +92,7 @@ const nextEvents = upcoming.slice(0, 3);
       </div>
 
       <div class="row">
-        <div class="row__media reveal"><span class="badge">Solve</span><img src={img('solve.svg')} alt="International service" /></div>
+        <div class="row__media reveal"><span class="badge">Solve</span><img src={stockPhoto('rcc-solve', 900, 720)} alt="International service" /></div>
         <div>
           <div class="row__num reveal d1">03</div>
           <h3 class="reveal d1">We <em>solve</em> problems</h3>
@@ -107,7 +107,7 @@ const nextEvents = upcoming.slice(0, 3);
   <section class="about" id="about">
     <div class="wrap about-grid">
       <div class="about-photo reveal">
-        <img src={img('about.svg')} alt="Rotaract Club of Chicago members" />
+        <img src={stockPhoto('rcc-about', 800, 1000)} alt="Rotaract Club of Chicago members" />
         <div class="stamp"><b>33</b><span>Years of service</span></div>
       </div>
       <div>
@@ -189,10 +189,10 @@ const nextEvents = upcoming.slice(0, 3);
         </div>
       ) : (
         <div class="bento">
-          <div class="tile big reveal"><img src={img('event-1.svg')} alt="Event" /><div class="cap"><b>Service Saturdays</b><span>Hands-on community projects across Chicago</span></div></div>
-          <div class="tile wide reveal d1"><img src={img('event-2.svg')} alt="Event" /><div class="cap"><b>Monthly Socials</b><span>Casual gatherings around the city</span></div></div>
-          <div class="tile reveal d2"><img src={img('event-3.svg')} alt="Event" /><div class="cap"><b>Roundtables</b><span>Guest speakers</span></div></div>
-          <div class="tile reveal d3"><img src={img('connect.svg')} alt="Event" /><div class="cap"><b>Mixers</b><span>Meet the crew</span></div></div>
+          <div class="tile big reveal"><img src={stockPhoto('rcc-ev1', 900, 900)} alt="Event" /><div class="cap"><b>Service Saturdays</b><span>Hands-on community projects across Chicago</span></div></div>
+          <div class="tile wide reveal d1"><img src={stockPhoto('rcc-ev2', 900, 500)} alt="Event" /><div class="cap"><b>Monthly Socials</b><span>Casual gatherings around the city</span></div></div>
+          <div class="tile reveal d2"><img src={stockPhoto('rcc-ev3', 500, 500)} alt="Event" /><div class="cap"><b>Roundtables</b><span>Guest speakers</span></div></div>
+          <div class="tile reveal d3"><img src={stockPhoto('rcc-ev4', 500, 500)} alt="Event" /><div class="cap"><b>Mixers</b><span>Meet the crew</span></div></div>
         </div>
       )}
     </div>
