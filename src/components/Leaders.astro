@@ -1,5 +1,5 @@
 ---
-import { avatarPhoto } from '../config';
+import { avatarPhoto, img } from '../config';
 import { urlFor, type Leader } from '../lib/sanity';
 
 // Headshot used for each standard role's placeholder (real-looking dummy).
@@ -8,6 +8,12 @@ const ROLE_AVATAR: Record<string, number> = {
   'vice president': 13,
   secretary: 45,
   treasurer: 32,
+};
+
+// Real people hard-wired for roles not yet entered in the CMS.
+// (If a real leader with the same role is published in Sanity, that wins.)
+const ROLE_OVERRIDE: Record<string, { name: string; photo: string; linkedin?: string }> = {
+  president: { name: 'Taylor', photo: img('taylor.jpg') },
 };
 
 interface Props {
@@ -31,13 +37,16 @@ const real = leaders.map((p) => ({
 
 // Fill any standard role that doesn't yet have a real person with a placeholder.
 const filledRoles = new Set(real.map((p) => p.role.trim().toLowerCase()));
-const fillers = STANDARD_ROLES.filter((r) => !filledRoles.has(r.toLowerCase())).map((role) => ({
-  name: 'First Last',
-  role,
-  linkedin: '',
-  photo: avatarPhoto(ROLE_AVATAR[role.toLowerCase()] ?? 8),
-  placeholder: true,
-}));
+const fillers = STANDARD_ROLES.filter((r) => !filledRoles.has(r.toLowerCase())).map((role) => {
+  const ov = ROLE_OVERRIDE[role.toLowerCase()];
+  return {
+    name: ov?.name ?? 'First Last',
+    role,
+    linkedin: ov?.linkedin ?? '',
+    photo: ov?.photo ?? avatarPhoto(ROLE_AVATAR[role.toLowerCase()] ?? 8),
+    placeholder: !ov, // a real override is not a placeholder
+  };
+});
 
 // Order by standard role; anyone with a non-standard role goes last.
 const rank = (r: string) => {
