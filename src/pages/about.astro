@@ -1,0 +1,181 @@
+---
+import Base from '../layouts/Base.astro';
+
+const ph = (f: string) => `/assets/img/${encodeURIComponent(f)}`;
+
+const pillars = [
+  {
+    t: 'Professional Development',
+    d: 'Expanding members’ understanding of the work environment and the business opportunities in their community.',
+    items: [
+      'Professional and vocational forums',
+      'Management and marketing seminars',
+      'Business and professional ethics',
+      'Finance and start-up guidance',
+    ],
+  },
+  {
+    t: 'Leadership Development',
+    d: 'Making members more effective leaders — in their own lives and in building strong clubs with relevant projects.',
+    items: [
+      'Public speaking & communication',
+      'Building consensus among members',
+      'Delegation and follow-up',
+      'Project publicity & promotion',
+    ],
+  },
+  {
+    t: 'Service Projects',
+    d: '“Service Above Self.” Every club completes at least two major projects a year — one community, one international.',
+    items: [
+      'Community service initiatives',
+      'International service projects',
+      'Addressing hunger, literacy & more',
+      'Most or all members involved',
+    ],
+  },
+];
+
+const goals = [
+  'Develop professional and leadership skills',
+  'Promote ethical standards and the dignity of all useful occupations',
+  'Address the needs and concerns of our community and our world',
+  'Work in cooperation with our sponsoring Rotary club',
+  'Encourage young people toward eventual membership in Rotary',
+];
+---
+<Base title="About — Rotaract Club of Chicago" description="What is Rotaract? Our professional development, leadership, and service work — and our roots in the birthplace of Rotary.">
+  <section class="pagehead">
+    <div class="aurora a1"></div><div class="aurora a2"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">About the club</span>
+      <h1>Service, leadership <em>&amp; friendship</em></h1>
+      <p>A Rotary-sponsored service club for young adults — building skills, serving communities, and promoting international understanding through friendship and service.</p>
+    </div>
+  </section>
+
+  <!-- What is Rotaract -->
+  <section style="padding-bottom:60px">
+    <div class="wrap" style="max-width:880px">
+      <span class="eyebrow reveal">What is Rotaract?</span>
+      <p class="big-lede reveal d1" style="margin-bottom:24px">“Rotaract” stands for <em class="serif" style="color:var(--cranberry)">Rotary in Action</em>.</p>
+      <p class="lede reveal d1">Founded in 1968 by Rotary International, Rotaract is a service club for young adults. Today there are more than <strong>7,500 clubs</strong> in some <strong>156 countries</strong>, with over <strong>173,000 members</strong> worldwide. Clubs are community- or university-based and sponsored by a local Rotary club — true “partners in service” and key members of the Rotary family.</p>
+      <p class="lede reveal d2" style="margin-top:18px">Through Rotaract, young adults grow their knowledge and skills while addressing the physical and social needs of their communities — promoting international understanding and peace through a framework of friendship and service.</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats" style="margin:0">
+    <div class="wrap" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat reveal"><b>1968</b><span>Rotaract founded by Rotary International</span></div>
+      <div class="stat reveal d1"><b>7,500+</b><span>Rotaract clubs worldwide</span></div>
+      <div class="stat reveal d2"><b>156</b><span>Countries</span></div>
+      <div class="stat reveal d3"><b>173k+</b><span>Members around the world</span></div>
+    </div>
+  </section>
+
+  <!-- What we do: 3 pillars -->
+  <section>
+    <div class="wrap">
+      <div class="center" style="max-width:640px">
+        <span class="eyebrow">What a Rotaract club does</span>
+        <h2 style="margin:0 auto">Three areas, <span class="h2-serif">one balance</span></h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto">Every Rotaract club blends professional development, leadership development, and service — for a well-rounded program and real personal growth.</p>
+      </div>
+      <div class="benefit-grid">
+        {pillars.map((p, i) => (
+          <div class={`benefit reveal d${(i % 3) + 1}`}>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+            <ul class="benefit-list">
+              {p.items.map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Goals -->
+  <section class="about-bg" style="padding-top:80px">
+    <div class="wrap about-grid">
+      <div class="about-photo reveal">
+        <img src={ph('Club Photos 1.jpg')} alt="Rotaract Club of Chicago members" />
+      </div>
+      <div>
+        <span class="eyebrow reveal">Our goals</span>
+        <h2 class="reveal d1">What we’re <span class="h2-serif">working toward</span></h2>
+        <ul class="goal-list reveal d2">
+          {goals.map((g) => <li>{g}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roots / timeline -->
+  <section>
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow reveal">Our roots</span>
+        <h2 class="reveal d1">Rooted in the <span class="h2-serif">birthplace</span> of Rotary</h2>
+        <p class="lede reveal d2">The Rotaract Club of Chicago, founded in 1992, is sponsored by the Rotary Club of Chicago (The Rotary/One Foundation) — the very first Rotary club in the world.</p>
+        <div class="timeline reveal d2">
+          <div class="tl"><b>1905 — Rotary is born</b><p>Paul Harris founds the first Rotary club in downtown Chicago.</p></div>
+          <div class="tl"><b>1968 — Rotaract begins</b><p>Rotary International launches Rotaract for young adults worldwide.</p></div>
+          <div class="tl"><b>1992 — Our club is chartered</b><p>Rotary/One sponsors the Rotaract Club of Chicago.</p></div>
+        </div>
+      </div>
+      <div class="about-photo reveal d1">
+        <img src={ph('Group Photo Yacht Club.jpg')} alt="Club group photo" />
+      </div>
+    </div>
+  </section>
+
+  <!-- About Rotary + Polio -->
+  <section class="why">
+    <div class="wrap why-grid">
+      <div>
+        <span class="eyebrow reveal">About Rotary</span>
+        <p class="big-lede reveal d1">A worldwide network of <em>1.2 million</em> business, professional, and community leaders.</p>
+        <p class="why-lede reveal d2">With over 32,000 clubs in more than 200 countries, Rotary is nonpolitical, nonreligious, and open to all. Rotarians provide humanitarian service, encourage high ethical standards, and build goodwill and peace. The motto: <strong>Service Above Self</strong>.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="polio-card">
+          <img src={ph('Rotary End Polio 1.jpg')} alt="End Polio Now" />
+          <div class="polio-body">
+            <h3>Ending polio, together</h3>
+            <p>All Rotarians are united in the campaign to eradicate polio worldwide. Since the 1980s, Rotary has contributed hundreds of millions of dollars — and an army of volunteers — toward a polio-free world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where we meet -->
+  <section class="contact-bg">
+    <div class="wrap">
+      <div class="meet-card reveal">
+        <div>
+          <span class="eyebrow">Where we meet</span>
+          <h2 style="font-size:clamp(26px,3vw,40px)">Come say hi</h2>
+          <p style="color:#41506C;font-size:17px;margin-top:14px;max-width:46ch">We gather for socials, service projects, and roundtables across Chicago. New faces are always welcome — reach out and we’ll point you to the next one.</p>
+        </div>
+        <div class="meet-facts">
+          <div><b>Meetings</b><span>Monthly socials &amp; roundtables</span></div>
+          <div><b>Where</b><span>Around the city of Chicago</span></div>
+          <div><b>Who</b><span>Students &amp; young professionals — all welcome</span></div>
+          <a class="btn btn-dark" href="/membership">How to join →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <h2 class="reveal">Make it your <em>club</em></h2>
+      <p class="reveal d1">Join a community of young Chicagoans serving, leading, and having a great time doing it.</p>
+      <a class="btn btn-fill magnetic reveal d2" href="/membership">Become a member <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</Base>

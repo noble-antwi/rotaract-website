@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+
+const ph = (f: string) => `/assets/img/${encodeURIComponent(f)}`;
+
+const photos = [
+  { f: 'Group Photo Yacht Club.jpg', c: 'Annual gala' },
+  { f: 'Coffee Social 24.jpg', c: 'Coffee social' },
+  { f: 'Christmas Food Drive.jpg', c: 'Holiday food drive' },
+  { f: 'Rooftop Barbecue.jpg', c: 'Rooftop barbecue' },
+  { f: 'Garfield Park Conservatory 22.jpg', c: 'Garfield Park Conservatory' },
+  { f: 'Lincoln Park Zoo Lights 24.jpg', c: 'ZooLights' },
+  { f: 'Christkindle Market 23.jpg', c: 'Christkindlmarket' },
+  { f: 'Summer Picnic in Lincoln Park 21.jpg', c: 'Summer picnic' },
+  { f: 'My block my hood my city 2019.jpg', c: 'My Block, My Hood, My City' },
+  { f: 'Kaiser Tiger Curling Event 2020.jpg', c: 'Curling night' },
+  { f: 'Rotaract Midnight in Paris Event.jpg', c: 'Midnight in Paris' },
+  { f: 'Dinner photo.jpg', c: 'Club dinner' },
+  { f: 'Service Photo.jpg', c: 'Service day' },
+  { f: 'Donner Warehouse.jpg', c: 'Food depository' },
+  { f: 'Outdoor Cookout 2020.jpg', c: 'Outdoor cookout' },
+  { f: 'Montly Dinner Culichitown 2020.jpg', c: 'Monthly dinner' },
+];
+---
+<Base title="Photos — Rotaract Club of Chicago" description="Photos from our service projects, socials, and events around Chicago.">
+  <section class="pagehead">
+    <div class="aurora a1"></div><div class="aurora a2"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Photos</span>
+      <h1>Moments from <em>the club</em></h1>
+      <p>A look at our service projects, socials, and adventures around the city. More photos are added as we go.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:70px">
+    <div class="wrap">
+      <div class="masonry">
+        {photos.map((p) => (
+          <figure class="reveal">
+            <img src={ph(p.f)} alt={p.c} loading="lazy" />
+            <figcaption>{p.c}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

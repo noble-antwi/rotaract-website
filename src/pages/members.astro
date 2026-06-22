@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+
+const links = [
+  {
+    t: 'My Rotary',
+    d: 'Your Rotary International account — profile, learning center, and member resources.',
+    url: 'https://my.rotary.org/',
+    cta: 'Go to My Rotary',
+  },
+  {
+    t: 'DACdb Login',
+    d: 'Our club’s member database (MemberMinder Pro): directory, attendance, and the club calendar.',
+    url: 'https://www.memberminderpro.com/',
+    cta: 'Member login',
+  },
+  {
+    t: 'District 6450',
+    d: 'Our Rotary district — events, resources, and other clubs across the area.',
+    url: 'https://rotary6450.org/',
+    cta: 'Visit the district site',
+  },
+];
+---
+<Base title="Members — Rotaract Club of Chicago" description="Member resources for the Rotaract Club of Chicago: My Rotary, DACdb login, and District 6450.">
+  <section class="pagehead">
+    <div class="aurora a1"></div><div class="aurora a2"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Members</span>
+      <h1>Member <em>resources</em></h1>
+      <p>Quick links to the systems and resources our members use. Not a member yet? <a href="/membership" style="color:var(--gold);text-decoration:underline">Join us →</a></p>
+    </div>
+  </section>
+
+  <section style="padding-top:70px">
+    <div class="wrap">
+      <div class="link-grid">
+        {links.map((l, i) => (
+          <a class={`link-card reveal d${(i % 3) + 1}`} href={l.url} target="_blank" rel="noopener">
+            <h3>{l.t}<span class="ext" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></h3>
+            <p>{l.d}</p>
+            <span class="link-cta">{l.cta} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
