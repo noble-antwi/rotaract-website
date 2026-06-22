@@ -323,6 +323,17 @@ h2{font-weight:400;font-size:clamp(34px,5vw,68px);line-height:1.02;letter-spacin
 .faq details[open] .chev{transform:rotate(-135deg)}
 .faq details p{padding:0 26px 24px;font-size:15.5px;color:#41506C;line-height:1.7}
 
+/* ---------- Committees ---------- */
+.committee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.committee{background:#fff;border:1px solid var(--mist);border-radius:16px;padding:30px 28px;transition:transform .25s var(--ease),box-shadow .25s}
+.committee:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(19,32,63,.1)}
+.committee h3{font-weight:800;font-size:19px;margin-bottom:8px}
+.committee h3::before{content:"";display:block;width:34px;height:4px;border-radius:4px;background:var(--cranberry);margin-bottom:16px}
+.committee:nth-child(3n+2) h3::before{background:var(--azure)}
+.committee:nth-child(3n) h3::before{background:var(--gold)}
+.committee p{font-size:15px;color:#41506C;line-height:1.6}
+.committee-chair{display:inline-block;margin-top:16px;font-size:13px;font-weight:700;color:var(--cranberry)}
+
 /* ---------- Photos masonry ---------- */
 .masonry{column-count:3;column-gap:18px}
 .masonry figure{break-inside:avoid;margin:0 0 18px;position:relative;border-radius:16px;overflow:hidden;cursor:zoom-in}
@@ -423,6 +434,7 @@ footer.site .brand b,footer.site .brand small{color:#fff}
   .leader-grid{grid-template-columns:repeat(2,1fr)}
   .benefit-grid{grid-template-columns:repeat(2,1fr)}
   .link-grid{grid-template-columns:1fr}
+  .committee-grid{grid-template-columns:1fr 1fr}
   .masonry{column-count:2}
   .foot-top{grid-template-columns:1fr 1fr}
 }
@@ -447,6 +459,7 @@ footer.site .brand b,footer.site .brand small{color:#fff}
   .upd-grid{grid-template-columns:1fr}
   .post .gallery{grid-template-columns:1fr}
   .masonry{column-count:1}
+  .committee-grid{grid-template-columns:1fr}
   .event-card{flex-wrap:wrap;gap:16px}
   .event-date{width:auto;display:flex;gap:8px;align-items:baseline;border-right:0;border-bottom:1px solid var(--mist);padding:0 0 10px;width:100%}
   .event-date .d{font-size:24px}

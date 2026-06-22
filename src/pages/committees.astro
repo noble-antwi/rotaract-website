@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { img } from '../config';
+
+const board = [
+  { name: 'Taylor Thompkins', role: 'President', photo: img('taylor.jpg') },
+  { name: 'Evan Carnes', role: 'Vice President', photo: img('evan.jpg') },
+  { name: 'Diane Peres', role: 'Secretary', photo: img('diane.jpg') },
+  { name: 'Dennis Evashenk', role: 'Treasurer', photo: img('dennis.jpg') },
+];
+
+// Committee chairs — update names as they’re confirmed.
+const committees = [
+  { t: 'Community Service', chair: 'TBA', d: 'Local drives, soup kitchens, builds, and clean-ups across Chicago.' },
+  { t: 'International Service', chair: 'TBA', d: 'Global projects — education, equipment, and clean-water initiatives.' },
+  { t: 'Social & Events', chair: 'TBA', d: 'Monthly socials, mixers, and seasonal outings.' },
+  { t: 'Membership', chair: 'TBA', d: 'Welcoming new members and growing the club.' },
+  { t: 'Communications', chair: 'TBA', d: 'Website, social media, and newsletter.' },
+  { t: 'Fundraising', chair: 'TBA', d: 'Events and campaigns that fund our service work.' },
+];
+---
+<Base title="Committees — Rotaract Club of Chicago" description="The Rotaract Club of Chicago board and committee chairs.">
+  <section class="pagehead">
+    <div class="aurora a1"></div><div class="aurora a2"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--gold)">Leadership</span>
+      <h1>Board <em>&amp; committees</em></h1>
+      <p>The members who keep the club running — and the committees where the work gets done.</p>
+    </div>
+  </section>
+
+  <!-- Board -->
+  <section style="padding-top:70px">
+    <div class="wrap">
+      <span class="eyebrow reveal">Club board</span>
+      <h2 class="reveal d1" style="margin-bottom:6px">The <span class="h2-serif">officers</span></h2>
+      <div class="leader-grid" style="margin-top:40px">
+        {board.map((p, i) => (
+          <article class={`leader reveal d${(i % 4) + 1}`}>
+            <div class="leader-photo"><img src={p.photo} alt={p.name} loading="lazy" /></div>
+            <h3>{p.name}</h3>
+            <span class="leader-role">{p.role}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Committees -->
+  <section class="about-bg">
+    <div class="wrap">
+      <span class="eyebrow reveal">Committees</span>
+      <h2 class="reveal d1" style="margin-bottom:6px">Where the <span class="h2-serif">work happens</span></h2>
+      <p class="lede reveal d1">Want to get involved? Every committee welcomes new hands — reach out and we’ll connect you with the chair.</p>
+      <div class="committee-grid">
+        {committees.map((c, i) => (
+          <div class={`committee reveal d${(i % 3) + 1}`}>
+            <h3>{c.t}</h3>
+            <p>{c.d}</p>
+            <span class="committee-chair">Chair: {c.chair}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2 class="reveal">Find your <em>committee</em></h2>
+      <p class="reveal d1">Tell us what you’re into and we’ll get you plugged into the right group.</p>
+      <a class="btn btn-fill magnetic reveal d2" href="/membership">Get involved <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</Base>
