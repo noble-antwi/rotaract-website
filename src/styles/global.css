@@ -102,6 +102,10 @@ header.site.solid{background:rgba(7,12,29,.72);backdrop-filter:blur(16px);box-sh
    HERO
    ============================================================ */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:#fff;overflow:hidden}
+.hero-photo{position:absolute;inset:0;z-index:0}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(7,12,29,.94) 0%,rgba(10,19,48,.82) 45%,rgba(7,12,29,.55) 100%)}
+.hero .aurora{opacity:.32;mix-blend-mode:screen}
 .aurora{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
 .a1{width:55vw;height:55vw;background:radial-gradient(circle,var(--cranberry),transparent 65%);top:-15vw;left:-10vw;animation:drift1 18s ease-in-out infinite}
 .a2{width:50vw;height:50vw;background:radial-gradient(circle,var(--azure),transparent 65%);bottom:-20vw;right:-10vw;animation:drift2 22s ease-in-out infinite}

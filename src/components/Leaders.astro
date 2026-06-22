@@ -13,7 +13,10 @@ const ROLE_AVATAR: Record<string, number> = {
 // Real people hard-wired for roles not yet entered in the CMS.
 // (If a real leader with the same role is published in Sanity, that wins.)
 const ROLE_OVERRIDE: Record<string, { name: string; photo: string; linkedin?: string }> = {
-  president: { name: 'Taylor', photo: img('taylor.jpg') },
+  president: { name: 'Taylor Thompkins', photo: img('taylor.jpg') },
+  'vice president': { name: 'Evan Carnes', photo: img('evan.jpg') },
+  secretary: { name: 'Diane Peres', photo: img('diane.jpg') },
+  treasurer: { name: 'Dennis Evashenk', photo: img('dennis.jpg') },
 };
 
 interface Props {
